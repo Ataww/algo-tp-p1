@@ -46,7 +46,6 @@ bool*	createDalle(int& w, int& h, string fileName){
 	int i = 0;
 
 	while (!f.eof()){
-		i++;
 		getline(f, line);
 		//Test nombre de colonnes
 		if(line.length() != w)
@@ -55,6 +54,7 @@ bool*	createDalle(int& w, int& h, string fileName){
 		strcpy(_line, line.c_str());
 		for (int j = 0; j < w; j++){
 			t[i*w+j] = (_line[j] == '0');}
+		i++;
 	}
 
 	//On ferme le fichier + désalocation
