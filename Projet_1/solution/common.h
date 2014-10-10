@@ -4,11 +4,16 @@
 typedef struct rectangle {
 	int width;
 	int height;
-} rect_t;
+} rect;
 
 typedef struct point {
 	int x;
 	int y;
-} point_t;
+} point;
+
+typedef struct dalle {
+	rect dim;
+	bool * data;
+} dalle;
 
 #endif
