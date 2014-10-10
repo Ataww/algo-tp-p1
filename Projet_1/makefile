@@ -20,11 +20,7 @@ test_read.o: $(TEST_DIR)test_read.cpp $(READ_DIR)read.h
 #Cible pour la solution 1
 solution_1: read.o solution_1.o
 	$(CX) $(CFLAGS) -o solution_1.exe read.o solution_1.o
-	ifeq($(OS),Windows_NT)
-		MOVE /Y solution1.exe exe/
-	else
-		mv solution_1.exe exe/
-	endif
+	mv solution_1.exe exe/
 
 read.o: $(READ_DIR)read.cpp
 	$(CX) $(FLAGS) -c $(READ_DIR)read.cpp
@@ -34,15 +30,7 @@ solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(READ_DIR)read.h
 
 #Cible de nettoyage
 clean:
-	ifeq($(OS),Windows_NT)
-		DEL /S /Q *.o
-	else
-		rm -rf *.o
-	endif
+	rm -rf *.o
 	
 mrpropre: clean
-	ifeq ($(OS),Windows_NT)
-		RD /S /Q exe
-	else
-		rm exe/*
-	endif
+	rm -rf ./exe

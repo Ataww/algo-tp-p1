@@ -2,18 +2,20 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <cstdlib>
+#include <stdexcept>
 using namespace std;
 #include "read.h"
 
 //Définition de createDalle
 bool*	createDalle(int& w, int& h, string fileName){
 
-	const string ERREUR_ENTETE ("ERREUR: Entete fichier incorrecte");
-	const string ERREUR_VIDE   ("ERREUR: Le fichier est vide");
+	const string ERREUR_ENTETE("ERREUR: Entete fichier incorrecte");
+	const string ERREUR_VIDE("ERREUR: Le fichier est vide");
 	const string ERREUR_COLONNE("ERREUR: Une ligne ne contient pas le bon nombre de colonne");
-	const string ERREUR_LIGNE  ("ERREUR: Le fichier ne contient pas le bon nombre de ligne");
+	const string ERREUR_LIGNE("ERREUR: Le fichier ne contient pas le bon nombre de ligne");
 
-	ifstream f(fileName);
+	ifstream f(fileName.c_str());
 	string line;
 	int nbEntete = 0;
 	bool* t= NULL;
