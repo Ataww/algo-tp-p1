@@ -71,7 +71,7 @@ int main (int argc, char* argv[]){
 	//Test présence nom de fichier
 	if(argc != 2){
 		cout << "ERRREUR sur les paramètres d'appel" << endl;
-		return 0;
+		return -1;
 	}
 
 	//Création de la dalle
@@ -80,7 +80,7 @@ int main (int argc, char* argv[]){
 	}
 	catch(range_error& e){
 		cout << e.what() << endl;
-		return 0;
+		return -1;
 	}
 
 	//Formule d'accés à i ligne et j colonne
@@ -107,20 +107,23 @@ int main (int argc, char* argv[]){
 	}
 
 	//Si le dallage est noir et blanc
-	if(zeroFound && unFound)
+	if(zeroFound && unFound) {
 		//recherche du plus grand rectangle
 		for(int i = 0; i < dalle.dim.height; i++){
 			for(int j = 0; j < dalle.dim.width; j++){
 				searchRect(dalle, rect, coord, i, j);
 			}
 		}
-
-	//Si le dallage est entièrement noir
-	if(unFound && !zeroFound){
+	} else if(unFound && !zeroFound) {
+		//Si le dallage est entièrement noir
 		cout << "Le dallage est noir, il n'y a aucun rectangle" << endl;
+		delete[] dalle.data;
 		return 0;
+	} else if(!unFound && zeroFound) {
+		// si la dalle est toute blanche
+		rect.width = dalle.dim.width;
+		rect.height = dalle.dim.height;
 	}
-
 
 	//Affichage
 	cout << endl;
@@ -130,5 +133,6 @@ int main (int argc, char* argv[]){
 	cout << "- largeur : "     << rect.width << endl;
 	cout << "- hauteur : "     << rect.height << endl;
 
+	delete[] dalle.data;
 	return 0;
 } 

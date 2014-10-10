@@ -22,11 +22,19 @@ solution_1: read.o solution_1.o
 	$(CX) $(CFLAGS) -o solution_1.exe read.o solution_1.o
 	mv solution_1.exe exe/
 
+#Cible pour la solution 2
+solution_2: read.o solution_2.o
+	$(CX) $(CFLAGS) -o solution_2.exe read.o solution_2.o
+	mv solution_2.exe exe/
+
 read.o: $(READ_DIR)read.cpp
 	$(CX) $(FLAGS) -c $(READ_DIR)read.cpp
 
-solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(READ_DIR)read.h
+solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)solution_1.cpp
+
+solution_2.o: $(SOLUTION_DIR)solution_2.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h
+	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)solution_2.cpp
 
 #Cible de nettoyage
 clean:
