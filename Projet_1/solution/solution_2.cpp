@@ -4,7 +4,13 @@ using namespace std;
 #include "../read/read.h"
 #include "common.h"
 
-
+int processLine(const dalle& dalle, int line, int start) {
+	if(start >= dalle.dim.width) {
+		throw new range_error("Index de départ supérieur à la largeur du dallage");
+	} else if(line >= dalle.dim.height) {
+		throw new range_error("Index de ligne supérieur à la hauteur du dallage");
+	}
+}
 
 int main(int argc, char* argv[]) {
 
@@ -23,6 +29,12 @@ int main(int argc, char* argv[]) {
 	}
 
 	cout << "largeur: " << dalle.dim.width << " / " << "hauteur: " << dalle.dim.height << endl;
+
+	bool black = false;
+	bool white = true;
+
+
+	checkDalle(dalle, white, black, true);
 
 	return 0;
 }

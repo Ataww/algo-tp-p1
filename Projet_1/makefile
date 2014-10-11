@@ -18,17 +18,20 @@ test_read.o: $(TEST_DIR)test_read.cpp $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_read.cpp
 
 #Cible pour la solution 1
-solution_1: read.o solution_1.o
-	$(CX) $(CFLAGS) -o solution_1.exe read.o solution_1.o
+solution_1: read.o common.o solution_1.o
+	$(CX) $(CFLAGS) -o solution_1.exe read.o common.o solution_1.o
 	mv solution_1.exe exe/
 
 #Cible pour la solution 2
-solution_2: read.o solution_2.o
-	$(CX) $(CFLAGS) -o solution_2.exe read.o solution_2.o
+solution_2: read.o common.o solution_2.o
+	$(CX) $(CFLAGS) -o solution_2.exe read.o common.o solution_2.o
 	mv solution_2.exe exe/
 
 read.o: $(READ_DIR)read.cpp
-	$(CX) $(FLAGS) -c $(READ_DIR)read.cpp
+	$(CX) $(CFLAGS) -c $(READ_DIR)read.cpp
+
+common.o: $(SOLUTION_DIR)common.cpp
+	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)common.cpp
 
 solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)solution_1.cpp

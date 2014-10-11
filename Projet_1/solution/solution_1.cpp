@@ -10,7 +10,7 @@ using namespace std;
 // Retourne VRAI si aucune case noir n'est trouné      //
 //               sinon FAUX                            //
 /////////////////////////////////////////////////////////
-bool isValide(dalle& dalle, point source, int h_rect, int w_rect){
+bool isValide(const dalle& dalle, point source, int h_rect, int w_rect){
 	for(int case_y = source.y; case_y <= h_rect; case_y++){
 		for(int  case_x = source.x; case_x <= w_rect; case_x++){
 			if(dalle.data[case_y*dalle.dim.width+case_x] == false) 
@@ -25,7 +25,7 @@ bool isValide(dalle& dalle, point source, int h_rect, int w_rect){
 //Fonction de recherche de tout les rectangles possible//
 //à partir de source.x et source.y                     //
 /////////////////////////////////////////////////////////
-void searchRect(dalle& dalle, rect& r, point& coord, int source_x, int source_y){
+void searchRect(const dalle& dalle, rect& r, point& coord, int source_x, int source_y){
 
 	//On stocke la largeur et la hauteur du plus grand rectangle
 	rect maxRect = {.width = r.width, .height = r.height};
@@ -47,11 +47,9 @@ void searchRect(dalle& dalle, rect& r, point& coord, int source_x, int source_y)
 	}
 
 	//Mise à jour des info du plus grand rectangle
-	if(maxRect.width * maxRect.height > r.width * r.height){
-		r.width = maxRect.width;
-		r.height = maxRect.height;
-		coord.x = source.x;
-		coord.y = source.y;
+	if(maxRect > r){
+		r = maxRect;
+		coord = source;
 	}
 }
 
@@ -92,19 +90,7 @@ int main (int argc, char* argv[]){
 	bool zeroFound = false;
 	bool unFound   = false;
 
-	for(int i = 0; i < dalle.dim.height; i++){
-		for(int j = 0; j < dalle.dim.width; j++){
-			if(dalle.data[i*dalle.dim.width+j]){
-				cout << '0';
-				zeroFound = true;
-			}
-			else{
-				cout << '1';
-				unFound = true;
-			}
-		}
-		cout << endl;
-	}
+	checkDalle(dalle, zeroFound, unFound, true);
 
 	//Si le dallage est noir et blanc
 	if(zeroFound && unFound) {
