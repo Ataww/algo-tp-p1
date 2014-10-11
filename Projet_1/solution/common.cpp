@@ -11,7 +11,7 @@ bool operator> (const rect& l, const rect& r) {
 }
 
 bool operator== (const rect& l, const rect& r) {
-	return (!(l < r) && !(l> r));
+	return (!(l < r) && !(l > r));
 }
 
 bool operator<= (const rect& l, const rect& r) {
@@ -22,7 +22,6 @@ bool operator>= (const rect& l, const rect& r) {
 	return ((l > r) || (l == r));
 }
 
-// voir common.h
 void checkDalle(const dalle& dalle, bool& white, bool& black, bool display) {
 	white = black = false;
 	for(int i = 0; i < dalle.dim.height; i++) {
