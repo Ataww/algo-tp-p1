@@ -33,7 +33,7 @@ read.o: $(READ_DIR)read.cpp
 common.o: $(SOLUTION_DIR)common.cpp
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)common.cpp
 
-solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h
+solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)solution_1.cpp
 
 solution_2.o: $(SOLUTION_DIR)solution_2.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h

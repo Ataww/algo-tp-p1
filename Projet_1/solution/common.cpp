@@ -1,7 +1,26 @@
 #include <iostream>
+using namespace std;
 #include "common.h"
 
-using namespace std;
+bool operator< (const rect& l, const rect& r) { 
+	return (l.width * l.height < r.width * r.height);
+};
+
+bool operator> (const rect& l, const rect& r) {
+	return (l.width * l.height > r.width * r.height);
+}
+
+bool operator== (const rect& l, const rect& r) {
+	return (!(l < r) && !(l> r));
+}
+
+bool operator<= (const rect& l, const rect& r) {
+	return ((l < r) || (l == r));
+}
+
+bool operator>= (const rect& l, const rect& r) {
+	return ((l > r) || (l == r));
+}
 
 // voir common.h
 void checkDalle(const dalle& dalle, bool& white, bool& black, bool display) {

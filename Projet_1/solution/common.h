@@ -19,25 +19,15 @@ typedef struct rect {
 } rect;
 
 // Les opérateurs suivant comparent les aires des rectangles données.
-bool operator< (const rect& l, const rect& r) { 
-	return (l.width * l.height < r.width * r.height);
-};
+bool operator< (const rect& l, const rect& r);
 
-bool operator> (const rect& l, const rect& r) {
-	return (l.width * l.height > r.width * r.height);
-}
+bool operator> (const rect& l, const rect& r);
 
-bool operator== (const rect& l, const rect& r) {
-	return (!(l < r) && !(l> r));
-}
+bool operator== (const rect& l, const rect& r);
 
-bool operator<= (const rect& l, const rect& r) {
-	return ((l < r) || (l == r));
-}
+bool operator<= (const rect& l, const rect& r);
 
-bool operator>= (const rect& l, const rect& r) {
-	return ((l > r) || (l == r));
-}
+bool operator>= (const rect& l, const rect& r);
 
 /**
 * Structure représentant les coordonnées d'un point (une case dans notre cas).
