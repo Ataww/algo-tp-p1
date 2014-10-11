@@ -64,11 +64,6 @@ typedef struct point {
 typedef struct dalle {
 	rect dim;
 	bool * data;
-
-	// permet d'accéder aux données via dalle[i]
-	bool& operator[](std::size_t i) {
-		return data[i];
-	}
 } dalle;
 
 /*

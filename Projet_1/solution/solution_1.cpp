@@ -28,7 +28,7 @@ bool isValide(const dalle& dalle, point source, int h_rect, int w_rect){
 void searchRect(const dalle& dalle, rect& r, point& coord, int source_x, int source_y){
 
 	//On stocke la largeur et la hauteur du plus grand rectangle
-	rect maxRect = {.width = r.width, .height = r.height};
+	rect maxRect = r;
 
 	point source = {.x = source_x, .y = source_y};
 
