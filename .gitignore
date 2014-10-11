@@ -23,6 +23,7 @@
 *.lib
 
 # Executables
+Projet_1/exe/*.exe
 *.out
 *.app
 
