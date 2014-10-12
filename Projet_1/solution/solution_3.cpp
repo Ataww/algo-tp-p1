@@ -12,7 +12,7 @@ using namespace std;
 //		tab: le tableau de hauteurs           				//
 //		indice: indice de la ligne à rempli         		//            
 //////////////////////////////////////////////////////////////
-void fillTabH(const dalle& dalle, int tab[], const int indice){
+void fillTabH(const dalle& dalle, int tab[], const int indice, const bool display){
 
 	int w = dalle.dim.width;
 
@@ -36,6 +36,13 @@ void fillTabH(const dalle& dalle, int tab[], const int indice){
 					tab[indice*w+j] = 1;
 			}
 		}
+	}
+
+	//Affichage du tableau de hauteur
+	if(display){
+		for(int j = 0; j < w; j++)
+			cout << tab[indice*w+j];
+		cout << endl;
 	}
 }
 
@@ -72,7 +79,7 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 			}
 			if(tab[indice*w+j] == 0)
 				Found = false;
-			if(tab[indice*w+j] < rect.width){
+			if(tab[indice*w+j] < rect.height){
 				rect.width ++;
 				rect.height = currentH;
 				coord.y = indice-currentH+1;
@@ -146,7 +153,7 @@ int main (int argc, char* argv[]){
 	//Si le dallage est noir et blanc
 	if(zeroFound && unFound) {
 		for(int i = 0; i < dalle.dim.height; i++){
-			fillTabH(dalle, tabH, i);
+			fillTabH(dalle, tabH, i, false);
 			searchMaxRectLine(tabH,i, rect, coord, dalle);
 		}
 	} else if(unFound && !zeroFound) {

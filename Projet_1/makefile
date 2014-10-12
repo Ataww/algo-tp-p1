@@ -4,7 +4,7 @@ READ_DIR = read/
 SOLUTION_DIR = solution/
 TEST_DIR = test/
 EXE_DIR = exe/
-EXEC = solution_1
+EXEC = solution_1 solution_2 solution_3
 
 #Cible pour une compilation total du projet
 all: $(EXEC)
@@ -52,4 +52,4 @@ clean:
 	rm -rf *.o
 	
 mrpropre: clean
-	rm -rf ./exe
+	rm -rf ./exe/*
