@@ -6,19 +6,39 @@ using namespace std;
 
 /**
 */
-int processLine(const dalle& dalle, point start) {
-	if(start.x >= dalle.dim.width) {
+int measureLine(const dalle& dalle, int x, int y) {
+	if(x >= dalle.dim.width) {
 		throw new range_error("Index de départ supérieur à la largeur du dallage");
-	} else if(start.y >= dalle.dim.height) {
+	} else if(y >= dalle.dim.height) {
 		throw new range_error("Index de ligne supérieur à la hauteur du dallage");
 	}
 	int width = 0;
 	// on parcourt la ligne en cours depuis l'index start.x jusqu'à la fin de ligne ou une dalle noire
-	for(int i = start.x; dalle.data[dalle.dim.width*start.y+i] && i < dalle.dim.width; i++ ) {
+	for(int i = x; dalle.data[dalle.dim.width*y+i] && i < dalle.dim.width; i++ ) {
 		width++;
 	}
-	//on retour la largeur du rectangle
+	//on retourne la largeur du rectangle
 	return width;
+}
+
+void rectTraverse(const dalle& dalle, rect& max, const point& start, point& coord) {
+	rect current = { .width=measureLine(dalle, start.x, start.y), .height=1};
+	for(int j = start.y; j < dalle.dim.height; j++) {
+		if(!dalle.data[j*dalle.dim.width+start.x]) { break;}
+
+		int ligne = measureLine(dalle, start.x, j);
+		current.width = (ligne < current.width) ? ligne : current.width;
+		current.height++;
+		if(current > max) {
+			max = current;
+			coord = start;
+		}
+	}
+	//temporaire, pour les rect de 1 case.
+	if(current > max) {
+		max = current;
+		coord = start;
+	}
 }
 
 void searchRect(const dalle& dalle, rect& r, point& coord) {
@@ -27,15 +47,10 @@ void searchRect(const dalle& dalle, rect& r, point& coord) {
 		for(int j = 0; j < dalle.dim.height; j++) {
 			if(dalle.data[j*dalle.dim.width+i]) {
 				point start = {.x=i, .y=j};
-				int ligne = processLine(dalle, start);
-				cout << "ligne(" << i << "," << j << ") -> length: " << ligne << endl;
+				rectTraverse(dalle, max, start, coord);
 			}
 		}
 	}
-}
-
-void searchByCol(const dalle& dalle, rect& r, int row, int col) {
-
 }
 
 int main(int argc, char* argv[]) {
@@ -76,6 +91,8 @@ int main(int argc, char* argv[]) {
 	} else {
 		searchRect(dalle, rect, coords);
 	}
+
+	cout << "rectangle max: " << rect.width << "," << rect.height << " a (" << coords.x << "," << coords.y << ")" << endl;
 
 	delete[] dalle.data;
 	return 0;
