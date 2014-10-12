@@ -2,7 +2,7 @@
 #include <stdexcept>
 using namespace std;
 #include "../read/read.h"
-#include "common.h"
+#include "../solution/common.h"
 
 
 /////////////////////////////////////////////////////////
