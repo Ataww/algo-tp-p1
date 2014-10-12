@@ -69,7 +69,6 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 			if(rect > rectMax){
 				rectMax = rect;
 				coordMax = coord;
-				cout << rect.height << "  /  " << endl;
 			}
 			if(tab[indice*w+j] == 0)
 				Found = false;
@@ -96,7 +95,6 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 	if(rect > rectMax){
 		rectMax = rect;
 		coordMax = coord;
-		cout << rect.height << "  /  " << endl;
 	}
 
 }
@@ -151,10 +149,6 @@ int main (int argc, char* argv[]){
 			fillTabH(dalle, tabH, i);
 			searchMaxRectLine(tabH,i, rect, coord, dalle);
 		}
-		for(int i = 0; i<dalle.dim.height; i++){
-			for(int j = 0; j < dalle.dim.width; j++)
-				cout << tabH[i*dalle.dim.width+j];
-			cout << endl;}
 	} else if(unFound && !zeroFound) {
 		//Si le dallage est entièrement noir
 		cout << "Le dallage est noir, il n'y a aucun rectangle" << endl;
