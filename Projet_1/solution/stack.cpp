@@ -3,6 +3,8 @@
 
 using namespace std;
 
+const size_t STACK_INITIAL_SIZE = 8;
+
 stack createEmptyStack(const size_t& size) {
 	stack s;
 	s.size = size;

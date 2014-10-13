@@ -13,6 +13,9 @@ typedef struct stack {
 	bool* data;
 }stack;
 
+extern const size_t STACK_INITIAL_SIZE;
+
+
 /**
 * créé une pile vide de taille size.
 * size: la taille de la pile à créer.
