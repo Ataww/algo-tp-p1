@@ -45,6 +45,11 @@ solution_4: read.o common.o stack.o solution_4.o
 	$(CX) $(CFLAGS) -o solution_4.exe read.o common.o stack.o solution_4.o
 	mv solution_4.exe $(EXE_DIR)
 
+#Cible pour le générateur de test
+test_generator: test_generator.o
+	$(CX) $(CFLAGS) -o test_generator.exe test_generator.o
+	mv test_generator.exe $(EXE_DIR)
+
 #utility objects
 read.o: $(READ_DIR)read.cpp
 	$(CX) $(CFLAGS) -c $(READ_DIR)read.cpp
@@ -68,9 +73,12 @@ solution_3.o: $(SOLUTION_DIR)solution_3.cpp $(SOLUTION_DIR)common.h $(READ_DIR)r
 solution_4.o: $(SOLUTION_DIR)solution_4.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h $(SOLUTION_DIR)stack.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)solution_4.cpp
 
+test_generator.o: $(SOLUTION_DIR)test_generator.cpp
+	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)test_generator.cpp
+
 #Cible de nettoyage
 clean:
 	rm -rf *.o
-	
+
 mrpropre: clean
 	rm -rf ./exe/*
