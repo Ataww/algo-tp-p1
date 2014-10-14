@@ -63,29 +63,33 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 	bool Found = false;
 	int w = dalle.dim.width;
 
+	//////////////////////////////////////
+	//Début parcours ligne gauche-droite//
+	//////////////////////////////////////
 	for(int j = 0; j < w; j++){
 
 		int currentH = tab[indice*w+j];
 
-		if(Found && currentH == rect.height)
+		if(Found && currentH >= rect.height)
 			//Si la hauteur ne change pas on augmente la taille
 			rect.width++;
 
-		if(Found && currentH != rect.height){
-			//Si la hauteur change = fin d'un rectangle
+		if(Found && currentH < rect.height){
+			//Si la hauteur change
 			if(rect > rectMax){
 				rectMax = rect;
 				coordMax = coord;
 			}
-			if(tab[indice*w+j] == 0)
+
+			if(tab[indice*w+j] == 0){
 				Found = false;
+			}
 			if(tab[indice*w+j] < rect.height){
 				rect.width ++;
 				rect.height = currentH;
 				coord.y = indice-currentH+1;
-			}else{
-				Found = false;
-			}
+			}else
+				Found = false;	
 		}
 
 		if(!Found && currentH != 0){
@@ -103,6 +107,58 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 		rectMax = rect;
 		coordMax = coord;
 	}
+	//fin parcours gauche
+
+
+
+	Found = false;
+	////////////////////////////////
+	//Début parcours droite-gauche//
+	////////////////////////////////
+	for(int j = w-1; j >= 0; j--){
+
+		int currentH = tab[indice*w+j];
+
+		if(Found && currentH >= rect.height){
+			//Si la hauteur ne change pas on augmente la taille + mise à jour coord.x
+			coord.x = j;
+			rect.width++;
+		}
+
+		if(Found && currentH < rect.height){
+			//Si la hauteur change
+			if(rect > rectMax){
+				rectMax = rect;
+				coordMax = coord;
+			}
+
+			if(tab[indice*w+j] == 0){
+				Found = false;
+			}
+			if(tab[indice*w+j] < rect.height){
+				rect.width ++;
+				rect.height = currentH;
+				coord.y = indice-currentH+1;
+			}else
+				Found = false;	
+		}
+
+		if(!Found && currentH != 0){
+			//Si l'on commence un nouveau rectangle
+			rect.width = 1;
+			rect.height = currentH;
+			coord.y = indice-currentH+1;
+			coord.x = j;
+			Found = true;
+		}
+	}
+
+	//Mise à jour plus grand rectangle
+	if(rect > rectMax){
+		rectMax = rect;
+		coordMax = coord;
+	}
+	//Fin parcours droite-gauche
 
 }
 
