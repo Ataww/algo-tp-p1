@@ -1,6 +1,8 @@
 #ifndef STACK_H
 #define STACK_H
 
+#include "common.h"
+
 /**
 * structure représentant une pile.
 * top: indice de la valeur au sommet.
@@ -10,9 +12,13 @@
 typedef struct stack {
 	unsigned int top;
 	size_t size;
-	bool* data;
+	rect* data;
 }stack;
 
+/**
+* Taille initiale par défaut de la stack. Définie dans stack.cpp.
+* vaut 8 par défaut.
+*/
 extern const size_t STACK_INITIAL_SIZE;
 
 
@@ -36,14 +42,14 @@ bool empty(const stack& s);
 * s: La pile dans laquelle insérer la valeur.
 * val: la valeur à insérer.
 */
-void push(stack& s,const bool& val);
+void push(stack& s,const rect& val);
 
 /**
 * Extrait la valeur au sommet de la pile. Renvoie une range_error si la pile est vide.
 * s: La pile de laquelle on extrait la valeur.
 * return: la valeur au sommet de la pile, si la pile est non vide.
 */
-bool pop(stack& s);
+rect pop(stack& s);
 
 /**
 * Redimensionne le tableau de valeurs de la pile s à la taille newSize.

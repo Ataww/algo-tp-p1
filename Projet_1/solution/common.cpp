@@ -22,6 +22,18 @@ bool operator>= (const rect& l, const rect& r) {
 	return ((l > r) || (l == r));
 }
 
+// rectangle output
+ostream& operator<< (ostream& os, const rect& r) {
+	os << "(" << r.width << "," << r.height << ")";
+	return os;
+}
+
+// point output
+ostream& operator<< (ostream& os, const point& p) {
+	os << "(" << p.x << "," << p.y << ")";
+	return os;
+}
+
 void checkDalle(const dalle& dalle, bool& white, bool& black, bool display) {
 	white = black = false;
 	for(int i = 0; i < dalle.dim.height; i++) {

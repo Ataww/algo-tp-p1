@@ -18,11 +18,11 @@ test_read.o: $(TEST_DIR)test_read.cpp $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_read.cpp
 
 #cible TEST pour la stack
-test_stack: stack.o test_stack.o
-	$(CX) $(CFLAGS) -o test_stack.exe test_stack.o stack.o
+test_stack: stack.o test_stack.o common.o
+	$(CX) $(CFLAGS) -o test_stack.exe test_stack.o stack.o common.o
 	mv test_stack.exe $(EXE_DIR)
 
-test_stack.o: $(TEST_DIR)test_stack.cpp $(SOLUTION_DIR)stack.h
+test_stack.o: $(TEST_DIR)test_stack.cpp $(SOLUTION_DIR)stack.h $(SOLUTION_DIR)common.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_stack.cpp
 
 #Cible pour la solution 1

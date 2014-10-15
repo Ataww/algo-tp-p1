@@ -1,6 +1,8 @@
 #ifndef COMMON_H
 #define COMMON_H
 
+#include <iostream>
+
 /**
 * Structure représentant les dimensions d'un rectangle.
 * width : la largeur du rectangle.
@@ -29,6 +31,8 @@ bool operator<= (const rect& l, const rect& r);
 
 bool operator>= (const rect& l, const rect& r);
 
+std::ostream& operator<< (std::ostream& os, const rect& r);
+
 /**
 * Structure représentant les coordonnées d'un point (une case dans notre cas).
 * x : coordonnée en abscisse.
@@ -45,6 +49,8 @@ typedef struct point {
 		return *this;
 	}
 } point;
+
+std::ostream& operator<< (std::ostream& os, const point& p);
 
 /**
 * Structure représentant le dallage.
