@@ -58,107 +58,24 @@ void fillTabH(const dalle& dalle, int tab[], const int indice, const bool displa
 //////////////////////////////////////////////////////////////
 void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& coordMax, const dalle& dalle){
 
-	rect rect = {.width = 0, .height = 0};
-	point coord = {.x = 0, .y = 0};
-	bool Found = false;
 	int w = dalle.dim.width;
+	int hMin;
+	rect currentR = {.width = 0, .height = 0};
 
-	//////////////////////////////////////
-	//Début parcours ligne gauche-droite//
-	//////////////////////////////////////
-	for(int j = 0; j < w; j++){
-
-		int currentH = tab[indice*w+j];
-
-		if(Found && currentH >= rect.height)
-			//Si la hauteur ne change pas on augmente la taille
-			rect.width++;
-
-		if(Found && currentH < rect.height){
-			//Si la hauteur change
-			if(rect > rectMax){
-				rectMax = rect;
-				coordMax = coord;
+	for(int x_begin = 0; x_begin < w; x_begin++){
+		hMin = tab[indice*w+x_begin];
+		for(int x_end = x_begin; x_end < w; x_end++){
+			if(tab[indice*w+x_end] < hMin)
+				hMin = tab[indice*w+x_end];
+			currentR.width = x_end - x_begin + 1;
+			currentR.height = hMin;
+			if(rectMax < currentR){
+				rectMax = currentR;
+				coordMax.x = x_begin;
+				coordMax.y = indice-hMin+1;
 			}
-
-			if(tab[indice*w+j] == 0){
-				Found = false;
-			}
-			if(tab[indice*w+j] < rect.height){
-				rect.width ++;
-				rect.height = currentH;
-				coord.y = indice-currentH+1;
-			}else
-				Found = false;	
-		}
-
-		if(!Found && currentH != 0){
-			//Si l'on commence un nouveau rectangle
-			rect.width = 1;
-			rect.height = currentH;
-			coord.x = j;
-			coord.y = indice-currentH+1;
-			Found = true;
 		}
 	}
-
-	//Mise à jour plus grand rectangle
-	if(rect > rectMax){
-		rectMax = rect;
-		coordMax = coord;
-	}
-	//fin parcours gauche
-
-
-
-	Found = false;
-	////////////////////////////////
-	//Début parcours droite-gauche//
-	////////////////////////////////
-	for(int j = w-1; j >= 0; j--){
-
-		int currentH = tab[indice*w+j];
-
-		if(Found && currentH >= rect.height){
-			//Si la hauteur ne change pas on augmente la taille + mise à jour coord.x
-			coord.x = j;
-			rect.width++;
-		}
-
-		if(Found && currentH < rect.height){
-			//Si la hauteur change
-			if(rect > rectMax){
-				rectMax = rect;
-				coordMax = coord;
-			}
-
-			if(tab[indice*w+j] == 0){
-				Found = false;
-			}
-			if(tab[indice*w+j] < rect.height){
-				rect.width ++;
-				rect.height = currentH;
-				coord.y = indice-currentH+1;
-			}else
-				Found = false;	
-		}
-
-		if(!Found && currentH != 0){
-			//Si l'on commence un nouveau rectangle
-			rect.width = 1;
-			rect.height = currentH;
-			coord.y = indice-currentH+1;
-			coord.x = j;
-			Found = true;
-		}
-	}
-
-	//Mise à jour plus grand rectangle
-	if(rect > rectMax){
-		rectMax = rect;
-		coordMax = coord;
-	}
-	//Fin parcours droite-gauche
 
 }
 
