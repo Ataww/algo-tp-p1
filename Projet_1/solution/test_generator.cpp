@@ -52,9 +52,6 @@ int main(int argc, char* argv[]){
     return -1;
   }
 
-  //Calcul nombre de case blanche au total;
-  int totalBlanc = (nbLine * nbCol) * pBlanc / 100;
-
   //Création du fichier de test
   ofstream f;
   f.open("test_generator.txt");
@@ -63,10 +60,8 @@ int main(int argc, char* argv[]){
   for(int i = 0; i < nbLine; i++){
     f << '\n';
     for(int j = 0; j < nbCol; j++){
-      if((rand() & 1) == 0 && totalBlanc > 0){
+      if((rand() % 100) < pBlanc)
         f << "0";
-        totalBlanc --;
-      }
       else
         f << "1";
     }
