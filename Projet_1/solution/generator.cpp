@@ -56,7 +56,7 @@ int main(int argc, char* argv[]){
   ofstream f;
   f.open("test_generator.txt");
   f << nbLine << " " << nbCol;
-  srand(time(NULL));
+  srand((unsigned)time(NULL));
   for(int i = 0; i < nbLine; i++){
     f << '\n';
     for(int j = 0; j < nbCol; j++){
