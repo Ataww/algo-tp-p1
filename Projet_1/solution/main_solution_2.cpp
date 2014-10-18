@@ -1,6 +1,9 @@
 #include <iostream>
 #include <stdexcept>
+#include "../read/read.h"
 #include "common.h"
+#include "solution_2.h"
+
 
 using namespace std;
 
@@ -37,6 +40,8 @@ int main(int argc, char* argv[]) {
 		cout << "- coordonnée y: " << coord.y << endl;
 		cout << "- largeur : "     << rect.width << endl;
 		cout << "- hauteur : "     << rect.height << endl;
+	} else {
+		cout << "Le dallage est noir, aucun rectangle blanc n'existe." << endl;
 	}
 
 	delete[] dalle.data;
