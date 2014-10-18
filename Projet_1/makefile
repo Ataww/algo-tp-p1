@@ -44,8 +44,8 @@ solution_2: read.o common.o solution_2.o main_solution_2.o
 	mv solution_2.exe $(EXE_DIR)
 
 #Cible pour la solution 3
-solution_3: read.o common.o solution_3.o
-	$(CX) $(CFLAGS) -o solution_3.exe read.o common.o solution_3.o
+solution_3: read.o common.o solution_3.o main_solution_3.o
+	$(CX) $(CFLAGS) -o solution_3.exe read.o common.o solution_3.o main_solution_3.o
 	mv solution_3.exe $(EXE_DIR)
 
 #Cible pour la solution 4
@@ -90,6 +90,9 @@ main_solution_2.o: $(SOLUTION_DIR)main_solution_2.cpp $(SOLUTION_DIR)solution_2.
 
 main_solution_1.o: $(SOLUTION_DIR)main_solution_1.cpp $(SOLUTION_DIR)solution_1.h $(SOLUTION_DIR)common.h $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)main_solution_1.cpp
+
+main_solution_3.o: $(SOLUTION_DIR)main_solution_3.cpp $(SOLUTION_DIR)solution_3.h $(SOLUTION_DIR)common.h $(READ_DIR)read.h
+	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)main_solution_3.cpp
 
 #Cible de nettoyage
 clean:

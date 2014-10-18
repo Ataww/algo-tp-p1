@@ -1,8 +1,10 @@
 #include <iostream>
 #include <stdexcept>
-using namespace std;
+
 #include "../read/read.h"
 #include "common.h"
+
+using namespace std;
 
 //////////////////////////////////////////////////////////////
 // 	Fonction remplissant la ligne du tableau de hauteurs    //
@@ -79,74 +81,25 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 
 }
 
+bool solution3(const dalle& dalle, rect& max, point& coord) {
+	bool whiteFound = false;
+	bool blackFound   = false;
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//                            Point d'entrée du programme                               //
-//////////////////////////////////////////////////////////////////////////////////////////
-int main (int argc, char* argv[]){
-
-	//Variable liée à la dalle
-	dalle dalle;
-
-	//Variable liée au plus grand rectangle
-	point coord = {.x = 0, .y = 0};
-	rect rect = {.width = 0, .height = 0};
-
-
-	//Test présence nom de fichier
-	if(argc != 2){
-		cout << "ERRREUR sur les paramètres d'appel" << endl;
-		return -1;
-	}
-
-	//Création de la dalle
-	try{
-		dalle.data = createDalle( dalle.dim.width, dalle.dim.height, argv[1]);
-	}
-	catch(range_error& e){
-		cout << e.what() << endl;
-		return -1;
-	}
-
-	//Formule d'accés à i ligne et j colonne
-	// i * height + j
-	//Affichage des informations de la dalle
-	//et du contenu de la dalle
-	cout << "largeur= " << dalle.dim.width << " / " << "hauteur= " << dalle.dim.height << endl;
-
-	bool zeroFound = false;
-	bool unFound   = false;
-
-	checkDalle(dalle, zeroFound, unFound, true);
+	checkDalle(dalle, whiteFound, blackFound, true);
 
 	//Tableau des hauteurs
 	int tabH[dalle.dim.width*dalle.dim.height];
-
-	//Si le dallage est noir et blanc
-	if(zeroFound && unFound) {
+		
+	if(blackFound && !whiteFound) {
+		return false;
+	} else if(!blackFound && whiteFound) {
+		max = dalle.dim;
+		return true;
+	} else {
 		for(int i = 0; i < dalle.dim.height; i++){
 			fillTabH(dalle, tabH, i, false);
-			searchMaxRectLine(tabH,i, rect, coord, dalle);
+			searchMaxRectLine(tabH,i, max, coord, dalle);
 		}
-	} else if(unFound && !zeroFound) {
-		//Si le dallage est entièrement noir
-		cout << "Le dallage est noir, il n'y a aucun rectangle" << endl;
-		delete[] dalle.data;
-		return 0;
-	} else if(!unFound && zeroFound) {
-		// si la dalle est toute blanche
-		rect.width = dalle.dim.width;
-		rect.height = dalle.dim.height;
 	}
-
-	//Affichage
-	cout << endl;
-	cout << "Caractéristique du plus grand rectangle :" << endl;
-	cout << "- coordonnée x: " << coord.x << endl;
-	cout << "- coordonnée y: " << coord.y << endl;
-	cout << "- largeur : "     << rect.width << endl;
-	cout << "- hauteur : "     << rect.height << endl;
-
-	delete[] dalle.data;
-	return 0;
-} 
+	return true;
+}
