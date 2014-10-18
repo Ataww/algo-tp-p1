@@ -55,16 +55,15 @@ void checkDalle(const dalle& dalle, bool& white, bool& black, const bool& displa
 				//case blanche
 				white = true;
 				if (display) {
-					cout << '0';
+					cout << '0' << endl;
 				}
 			} else {
 				//case noire
 				black = true;
 				if(display) {
-					cout << '1';
+					cout << '1' << endl;
 				}
 			}
 		}
-		cout << endl;
 	}
 }

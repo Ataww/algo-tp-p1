@@ -22,6 +22,7 @@ void searchRect(const dalle& dalle, rect& r, point& coord, int source_x, int sou
 *	Le rectangle donnée doit être de dimension (0,0) et le rectangle maximal est retourné.
 * coord: référence des coordonnées du plus grand rectangle.
 *	Les coordonnées données doivent être à (0,0) et les coordonnées du rectangle maximal sont retournées.
+* RETOUR: false si la dalle est noir sinon true.
 */
 bool solution_1(const dalle& dalle, rect& rect, point& coord);
 

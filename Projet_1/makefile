@@ -33,6 +33,14 @@ test_generator: generator test_generator.o  common.o read.o
 test_generator.o: $(TEST_DIR)test_generator.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_generator.cpp
 
+#cible TEST pour la solution 1
+test_solution_1: solution_1.o test_solution_1.o  common.o read.o
+	$(CX) $(CFLAGS) -o test_solution_1.exe test_solution_1.o solution_1.o read.o common.o
+	mv test_solution_1.exe $(EXE_DIR)
+
+test_solution_1.o: $(TEST_DIR)test_solution_1.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_1.h
+	$(CX) $(CFLAGS) -c $(TEST_DIR)test_solution_1.cpp
+
 #Cible pour la solution 1
 solution_1: read.o common.o solution_1.o main_solution_1.o
 	$(CX) $(CFLAGS) -o solution_1.exe read.o common.o solution_1.o main_solution_1.o

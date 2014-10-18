@@ -49,7 +49,7 @@ bool solution_1(const dalle& dalle, rect& rect, point& coord){
 	bool zeroFound = false;
 	bool unFound   = false;
 
-	checkDalle(dalle, zeroFound, unFound, true);
+	checkDalle(dalle, zeroFound, unFound, false);
 
 	//Si le dallage est noir et blanc
 	if(zeroFound && unFound) {
