@@ -34,8 +34,8 @@ test_generator.o: $(TEST_DIR)test_generator.cpp $(READ_DIR)read.h $(SOLUTION_DIR
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_generator.cpp
 
 #Cible pour la solution 1
-solution_1: read.o common.o solution_1.o
-	$(CX) $(CFLAGS) -o solution_1.exe read.o common.o solution_1.o
+solution_1: read.o common.o solution_1.o main_solution_1.o
+	$(CX) $(CFLAGS) -o solution_1.exe read.o common.o solution_1.o main_solution_1.o
 	mv solution_1.exe $(EXE_DIR)
 
 #Cible pour la solution 2
@@ -72,7 +72,7 @@ generator.o: $(SOLUTION_DIR)generator.cpp
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)generator.cpp
 
 #solution objects
-solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(READ_DIR)read.h
+solution_1.o: $(SOLUTION_DIR)solution_1.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)solution_1.cpp
 
 solution_2.o: $(SOLUTION_DIR)solution_2.cpp $(SOLUTION_DIR)common.h $(READ_DIR)read.h
@@ -87,6 +87,9 @@ solution_4.o: $(SOLUTION_DIR)solution_4.cpp $(SOLUTION_DIR)common.h $(READ_DIR)r
 #main objects
 main_solution_2.o: $(SOLUTION_DIR)main_solution_2.cpp $(SOLUTION_DIR)solution_2.h $(SOLUTION_DIR)common.h $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)main_solution_2.cpp
+
+main_solution_1.o: $(SOLUTION_DIR)main_solution_1.cpp $(SOLUTION_DIR)solution_1.h $(SOLUTION_DIR)common.h $(READ_DIR)read.h
+	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)main_solution_1.cpp
 
 #Cible de nettoyage
 clean:

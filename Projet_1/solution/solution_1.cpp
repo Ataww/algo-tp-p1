@@ -2,14 +2,9 @@
 #include <stdexcept>
 using namespace std;
 #include "../read/read.h"
-#include "../solution/common.h"
+#include "common.h"
+#include "solution_1.h"
 
-
-/////////////////////////////////////////////////////////
-//Test si un retangle ne contient pas de case noir     //
-// Retourne VRAI si aucune case noir n'est trouné      //
-//               sinon FAUX                            //
-/////////////////////////////////////////////////////////
 bool isValide(const dalle& dalle, point source, int h_rect, int w_rect){
 	for(int case_y = source.y; case_y <= h_rect; case_y++){
 		for(int  case_x = source.x; case_x <= w_rect; case_x++){
@@ -21,10 +16,6 @@ bool isValide(const dalle& dalle, point source, int h_rect, int w_rect){
 }
 
 
-/////////////////////////////////////////////////////////
-//Fonction de recherche de tout les rectangles possible//
-//à partir de source.x et source.y                     //
-/////////////////////////////////////////////////////////
 void searchRect(const dalle& dalle, rect& r, point& coord, int source_x, int source_y){
 
 	//On stocke la largeur et la hauteur du plus grand rectangle
@@ -53,39 +44,7 @@ void searchRect(const dalle& dalle, rect& r, point& coord, int source_x, int sou
 	}
 }
 
-//////////////////////////////////////////////////////////////////////////////////////////
-//                            Point d'entrée du programme                               //
-//////////////////////////////////////////////////////////////////////////////////////////
-int main (int argc, char* argv[]){
-
-	//Variable liée à la dalle
-	dalle dalle;
-
-	//Variable liée au plus grand rectangle
-	point coord = {.x = 0, .y = 0};
-	rect rect = {.width = 0, .height = 0};
-
-
-	//Test présence nom de fichier
-	if(argc != 2){
-		cout << "ERRREUR sur les paramètres d'appel" << endl;
-		return -1;
-	}
-
-	//Création de la dalle
-	try{
-		dalle.data = createDalle( dalle.dim.width, dalle.dim.height, argv[1]);
-	}
-	catch(range_error& e){
-		cout << e.what() << endl;
-		return -1;
-	}
-
-	//Formule d'accés à i ligne et j colonne
-	// i * height + j
-	//Affichage des informations de la dalle
-	//et du contenu de la dalle
-	cout << "largeur= " << dalle.dim.width << " / " << "hauteur= " << dalle.dim.height << endl;
+bool solution_1(const dalle& dalle, rect& rect, point& coord){
 
 	bool zeroFound = false;
 	bool unFound   = false;
@@ -103,22 +62,12 @@ int main (int argc, char* argv[]){
 	} else if(unFound && !zeroFound) {
 		//Si le dallage est entièrement noir
 		cout << "Le dallage est noir, il n'y a aucun rectangle" << endl;
-		delete[] dalle.data;
-		return 0;
+		return false;
 	} else if(!unFound && zeroFound) {
 		// si la dalle est toute blanche
 		rect.width = dalle.dim.width;
 		rect.height = dalle.dim.height;
 	}
+	return true;
 
-	//Affichage
-	cout << endl;
-	cout << "Caractéristique du plus grand rectangle :" << endl;
-	cout << "- coordonnée x: " << coord.x << endl;
-	cout << "- coordonnée y: " << coord.y << endl;
-	cout << "- largeur : "     << rect.width << endl;
-	cout << "- hauteur : "     << rect.height << endl;
-
-	delete[] dalle.data;
-	return 0;
-} 
+}
