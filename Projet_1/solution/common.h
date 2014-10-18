@@ -31,6 +31,7 @@ bool operator<= (const rect& l, const rect& r);
 
 bool operator>= (const rect& l, const rect& r);
 
+//affiche un rectangle sous la forme (width,height)
 std::ostream& operator<< (std::ostream& os, const rect& r);
 
 /**
@@ -50,6 +51,7 @@ typedef struct point {
 	}
 } point;
 
+//affiche un point sous la forme (x,y)
 std::ostream& operator<< (std::ostream& os, const point& p);
 
 /**
