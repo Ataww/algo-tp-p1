@@ -10,8 +10,6 @@ using namespace std;
 const int NB_TEST = 10;
 const int L_MIN = 10;
 const int L_MAX = 200;
-const int C_MIN = L_MIN;
-const int C_MAX = L_MAX;
 
 
 //Fonction conptant le nombre de case blanche dans une dalle
@@ -35,10 +33,9 @@ int main (int argc, char* argv[]){
 	for(int i = 0; i < NB_TEST; i++){
 
 		int nbLine = L_MIN + rand()%(L_MAX - L_MIN);
-		int nbCol  = C_MIN + rand()%(C_MAX - C_MIN);
 		int pBlanc = rand()%100;
 
-		string command = "./exe/generator.exe "+ to_string(nbLine)+ " " + to_string(nbCol) + " " + to_string(pBlanc);
+		string command = "./exe/generator.exe "+ to_string(nbLine)+ " " + to_string(pBlanc);
 		system(command.c_str());
 
 		dalle dalle;

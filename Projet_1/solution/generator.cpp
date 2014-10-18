@@ -17,13 +17,13 @@ const string ERROR_NB = "ERREUR: Le nombre de ligne ou de colonne ne peut pas et
 int main(int argc, char* argv[]){
 
   //Test sur le nombre de paramètre
-  if(argc != 4){
+  if(argc != 3){
     cout << ERROR_APPEL << endl;
     return -1;
   }
 
   //Test paramètre int
-  for(int i = 1; i < 4; i++ ){
+  for(int i = 1; i < 3; i++ ){
     string tmp = argv[i];
     char cstr[tmp.length()];
     strcpy(cstr, tmp.c_str());
@@ -37,8 +37,8 @@ int main(int argc, char* argv[]){
 
   //Variable caractérisant la dalle
   int nbLine = atoi(argv[1]);
-  int nbCol  = atoi(argv[2]);
-  int pBlanc = atoi(argv[3]);
+  int nbCol  = atoi(argv[1]);
+  int pBlanc = atoi(argv[2]);
 
   //Test pourcentage !> 100
   if(pBlanc > 100){
