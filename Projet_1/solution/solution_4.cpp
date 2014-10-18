@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
 		rect.height = dalle.dim.height;
 	} else {
 		//sinon lance la recherche.
-		stack s = createEmptyStack(5);
+		stack s = createEmptyStack(STACK_INITIAL_SIZE);
 	}
 
 	//Affichage
