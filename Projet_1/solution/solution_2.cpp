@@ -54,7 +54,7 @@ bool solution2(const dalle& dalle, rect& max, point& coord) {
 	bool whiteFound = false;
 	bool blackFound = false;
 
-	checkDalle(dalle, whiteFound, blackFound, true);
+	checkDalle(dalle, whiteFound, blackFound, false);
 
 	if(blackFound && !whiteFound) {
 		return false;
