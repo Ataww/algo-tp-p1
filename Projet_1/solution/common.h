@@ -69,6 +69,7 @@ typedef struct dalle {
 * white : booléen utilisé pour indiquer si il existe des cases blanches.
 * black : booléen utilisé pour indiquer si il existe des cases noires.
 */
-void checkDalle(const dalle& dalle, bool& white, bool& black, bool display);
+void checkDalle(const dalle& dalle, bool& white, bool& black, const bool& display);
 
+// header guard
 #endif

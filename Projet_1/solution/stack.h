@@ -4,7 +4,7 @@
 #include "common.h"
 
 /**
-* structure représentant une pile.
+* structure représentant une pile de rectangles.
 * top: indice de la valeur au sommet.
 * size: taille de la pile.
 * data: tableau contenant les valeurs contenues par la pile.
@@ -58,4 +58,5 @@ rect pop(stack& s);
 */
 void resize(stack& s, const size_t& newSize);
 
-#endif
+//header guard
+#endif 

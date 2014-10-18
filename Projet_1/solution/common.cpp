@@ -1,6 +1,11 @@
 #include <iostream>
-using namespace std;
 #include "common.h"
+
+using namespace std;
+
+//////////////////////////////////////////////////////////////////////////////////////////
+//                                     Rectangle                                        //
+//////////////////////////////////////////////////////////////////////////////////////////
 
 bool operator< (const rect& l, const rect& r) { 
 	return (l.width * l.height < r.width * r.height);
@@ -28,13 +33,21 @@ ostream& operator<< (ostream& os, const rect& r) {
 	return os;
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////
+//                                     Point                                            //
+//////////////////////////////////////////////////////////////////////////////////////////
+
 // point output
 ostream& operator<< (ostream& os, const point& p) {
 	os << "(" << p.x << "," << p.y << ")";
 	return os;
 }
 
-void checkDalle(const dalle& dalle, bool& white, bool& black, bool display) {
+//////////////////////////////////////////////////////////////////////////////////////////
+//                                     Dalle                                            //
+//////////////////////////////////////////////////////////////////////////////////////////
+
+void checkDalle(const dalle& dalle, bool& white, bool& black, const bool& display) {
 	white = black = false;
 	for(int i = 0; i < dalle.dim.height; i++) {
 		for(int j = 0; j < dalle.dim.width; j++) {
