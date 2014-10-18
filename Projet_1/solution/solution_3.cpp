@@ -85,7 +85,7 @@ bool solution3(const dalle& dalle, rect& max, point& coord) {
 	bool whiteFound = false;
 	bool blackFound   = false;
 
-	checkDalle(dalle, whiteFound, blackFound, true);
+	checkDalle(dalle, whiteFound, blackFound, false);
 
 	//Tableau des hauteurs
 	int tabH[dalle.dim.width*dalle.dim.height];

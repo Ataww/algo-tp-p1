@@ -4,7 +4,7 @@
 using namespace std;
 #include "../read/read.h"
 #include "../solution/common.h"
-#include "../solution/solution_2.h"
+#include "../solution/solution_3.h"
 
 const int NB_TEST = 10;
 const string PATH = "file_test/test_";
@@ -66,7 +66,7 @@ int main(int argc, char* argv[]){
 		}
 
 		//Appel algorithme solution 1
-		bool result = solution2(dalle, rect, coord);
+		bool result = solution3(dalle, rect, coord);
 
 		if(!result && i == 0){
 			//Si la dalle est noir
