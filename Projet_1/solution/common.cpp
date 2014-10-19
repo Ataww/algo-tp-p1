@@ -65,6 +65,7 @@ void checkDalle(const dalle& dalle, bool& white, bool& black, const bool& displa
 				}
 			}
 		}
-		cout << endl;
+		if(display)
+			cout << endl;
 	}
 }

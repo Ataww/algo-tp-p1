@@ -4,7 +4,7 @@ READ_DIR = read/
 SOLUTION_DIR = solution/
 TEST_DIR = test/
 EXE_DIR = exe/
-EXEC = solution_1 solution_2 solution_3 test_stack test_read test_generator test_solution_1 test_solution_2 test_solution_3
+EXEC = solution_1 solution_2 solution_3 test_read test_generator test_solution_1 test_solution_2 test_solution_3
 
 #Cible pour une compilation total du projet
 all: $(EXEC)
