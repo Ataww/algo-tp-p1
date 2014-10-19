@@ -25,7 +25,7 @@ int main (int argc, char* argv[]){
 		cout << e.what() << endl;
 	}
 
-	//Test nombre de colonne
+	//Test nombre de colonne faux
 	try{
 		dalle = createDalle( width, height, "file_test/test_read_3.txt");
 	}
@@ -33,13 +33,23 @@ int main (int argc, char* argv[]){
 		cout << e.what() << endl;
 	}
 
-	//Test nombre de ligne
+	//Test nombre de ligne faux
 	try{
 		dalle = createDalle( width, height, "file_test/test_read_4.txt");
 	}
 	catch(range_error& e){
 		cout << e.what() << endl;
 	}
+
+	//Test sur un fichier connu
+	try{
+		dalle = createDalle( width, height, "file_test/test_1.txt");
+	}
+	catch(range_error& e){
+		cout << e.what() << endl;
+	}
+	if(width == 22 && height == 10)
+		cout << "[OK] La lecture du fichier est correcte" << endl;
 
 	return 0;
 }

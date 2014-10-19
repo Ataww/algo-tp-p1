@@ -4,7 +4,7 @@ READ_DIR = read/
 SOLUTION_DIR = solution/
 TEST_DIR = test/
 EXE_DIR = exe/
-EXEC = solution_1 solution_2 solution_3 test_read test_generator test_solution_1 test_solution_2 test_solution_3
+EXEC = solution_1 solution_2 solution_3 test_read test_generator test_solution_1 test_solution_2 test_solution_3 test_performance
 
 #Cible pour une compilation total du projet
 all: $(EXEC)
@@ -56,6 +56,14 @@ test_solution_3: solution_3.o test_solution_3.o  common.o read.o
 
 test_solution_3.o: $(TEST_DIR)test_solution_3.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_3.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_solution_3.cpp
+
+#cible TEST pour le test de performance
+test_performance: generator read.o common.o test_performance.o solution_1.o solution_2.o solution_3.o 
+	$(CX) $(CFLAGS) -o test_performance.exe test_performance.o solution_1.o solution_2.o solution_3.o read.o common.o
+	mv test_performance.exe $(EXE_DIR)
+
+test_performance.o: $(TEST_DIR)test_performance.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_1.h $(SOLUTION_DIR)solution_2.h $(SOLUTION_DIR)solution_3.h
+	$(CX) $(CFLAGS) -c $(TEST_DIR)test_performance.cpp
 
 #Cible pour la solution 1
 solution_1: read.o common.o solution_1.o main_solution_1.o
