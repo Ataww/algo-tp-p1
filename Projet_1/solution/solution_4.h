@@ -1,6 +1,16 @@
 #ifndef SOLUTION_4_H
 #define SOLUTION_4_H
 
+#include "common.h"
+#include "stack.h"
+#include "solution_3.h"
+
+void openRect(stack& s, const int& col, const int& height);
+
+void shrinkRects(stack& s, const int& height, const int& col, rect& max, point& coord);
+
+void lineTraverse(const dalle& dalle, stack& s, rect& max, point& coord, const int tabHeight[], int line);
+
 /**
 * Point d'entrée pour la solution 2. Analyse la dalle pour quelques cas particuliers.
 * dalle: le dallage dans lequel on cherche le rectangle.
