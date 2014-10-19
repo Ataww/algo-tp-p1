@@ -21,15 +21,15 @@ int main(int argc, char* argv[]) {
 	dalle dalle;
 
 	try {
-		dalle.data = createDalle(dalle.dim.width, dalle.dim.height, argv[1]);
+		dalle.data = createDalle(dalle.dim.width, dalle.dim.heigth, argv[1]);
 	} catch(range_error& e) {
 		cout << e.what() << endl;
 		return -1;
 	}
 
-	cout << "largeur: " << dalle.dim.width << " / " << "hauteur: " << dalle.dim.height << endl;
+	cout << "largeur: " << dalle.dim.width << " / " << "hauteur: " << dalle.dim.heigth << endl;
 
-	rect rect = {.width=0, .height=0};
+	rect rect = {.width=0, .heigth=0};
 	point coord = {.x=0, .y=0};
 
 	if(solution2(dalle, rect, coord)) {
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
 		cout << "- coordonnée x: " << coord.x << endl;
 		cout << "- coordonnée y: " << coord.y << endl;
 		cout << "- largeur : "     << rect.width << endl;
-		cout << "- hauteur : "     << rect.height << endl;
+		cout << "- hauteur : "     << rect.heigth << endl;
 	} else {
 		cout << "Le dallage est noir, aucun rectangle blanc n'existe." << endl;
 	}

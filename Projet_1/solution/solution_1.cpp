@@ -24,14 +24,14 @@ void searchRect(const dalle& dalle, rect& r, point& coord, int source_x, int sou
 	point source = {.x = source_x, .y = source_y};
 
 	//On regarde tout les rectangle possible depuis le point source(x,y)
-	for(int h_rect = source.y; h_rect < dalle.dim.height; h_rect++){
+	for(int h_rect = source.y; h_rect < dalle.dim.heigth; h_rect++){
 		for(int w_rect = source.x; w_rect < dalle.dim.width; w_rect++){
 			//on vérifie qu'un rectangle valide existe depuis les coordonnées source
 			if(isValide(dalle, source, h_rect, w_rect)){
-				if( (w_rect - source.x + 1)*(h_rect - source.y + 1) > maxRect.width * maxRect.height){
+				if( (w_rect - source.x + 1)*(h_rect - source.y + 1) > maxRect.width * maxRect.heigth){
 					//si le rectangle trouvé est plus grand que l'actuel max on remplace
 					maxRect.width = w_rect-source.x + 1;
-					maxRect.height = h_rect-source.y + 1;
+					maxRect.heigth = h_rect-source.y + 1;
 				}
 			}
 		}
@@ -54,7 +54,7 @@ bool solution_1(const dalle& dalle, rect& rect, point& coord){
 	//Si le dallage est noir et blanc
 	if(zeroFound && unFound) {
 		//recherche du plus grand rectangle
-		for(int i = 0; i < dalle.dim.height; i++){
+		for(int i = 0; i < dalle.dim.heigth; i++){
 			for(int j = 0; j < dalle.dim.width; j++){
 				searchRect(dalle, rect, coord, i, j);
 			}
@@ -66,7 +66,7 @@ bool solution_1(const dalle& dalle, rect& rect, point& coord){
 	} else if(!unFound && zeroFound) {
 		// si la dalle est toute blanche
 		rect.width = dalle.dim.width;
-		rect.height = dalle.dim.height;
+		rect.heigth = dalle.dim.heigth;
 	}
 	return true;
 

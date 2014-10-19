@@ -15,7 +15,7 @@ int main (int argc, char* argv[]){
 
 	//Variable liée au plus grand rectangle
 	point coord = {.x = 0, .y = 0};
-	rect rect = {.width = 0, .height = 0};
+	rect rect = {.width = 0, .heigth = 0};
 
 
 	//Test présence nom de fichier
@@ -26,14 +26,14 @@ int main (int argc, char* argv[]){
 
 	//Création de la dalle
 	try{
-		dalle.data = createDalle( dalle.dim.width, dalle.dim.height, argv[1]);
+		dalle.data = createDalle( dalle.dim.width, dalle.dim.heigth, argv[1]);
 	}
 	catch(range_error& e){
 		cout << e.what() << endl;
 		return -1;
 	}
 
-	cout << "largeur= " << dalle.dim.width << " / " << "hauteur= " << dalle.dim.height << endl;
+	cout << "largeur= " << dalle.dim.width << " / " << "hauteur= " << dalle.dim.heigth << endl;
 
 	//Appel algorithme solution 1
 	bool result = solution_1(dalle, rect, coord);
@@ -45,7 +45,7 @@ int main (int argc, char* argv[]){
 		cout << "- coordonnée x: " << coord.x << endl;
 		cout << "- coordonnée y: " << coord.y << endl;
 		cout << "- largeur : "     << rect.width << endl;
-		cout << "- hauteur : "     << rect.height << endl;
+		cout << "- hauteur : "     << rect.heigth << endl;
 	}
 
 	delete[] dalle.data;
