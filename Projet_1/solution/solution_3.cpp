@@ -67,7 +67,7 @@ bool solution3(const dalle& dalle, rect& max, point& coord) {
 	bool whiteFound = false;
 	bool blackFound   = false;
 
-	checkDalle(dalle, whiteFound, blackFound, false);
+	checkDalle(dalle, whiteFound, blackFound, true);
 
 	//Tableau des hauteurs
 	int tabH[dalle.dim.width*dalle.dim.height];
@@ -79,7 +79,7 @@ bool solution3(const dalle& dalle, rect& max, point& coord) {
 		return true;
 	} else {
 		for(int i = 0; i < dalle.dim.height; i++){
-			fillTabH(dalle, tabH, i, false);
+			fillTabH(dalle, tabH, i, true);
 			searchMaxRectLine(tabH,i, max, coord, dalle);
 		}
 	}

@@ -7,7 +7,9 @@
 
 void openRect(stack& s, const int& col, const int& height);
 
-void shrinkRects(stack& s, const int& height, const int& col, rect& max, point& coord);
+void closeRect(rect& max, point& coord, const stack_item& si, const int& col, const int& line);
+
+void shrinkRects(stack& s, const int& height, const int& col, const int& line, rect& max, point& coord);
 
 void lineTraverse(const dalle& dalle, stack& s, rect& max, point& coord, const int tabHeight[], int line);
 

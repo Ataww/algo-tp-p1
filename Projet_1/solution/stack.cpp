@@ -5,6 +5,11 @@ using namespace std;
 
 const size_t STACK_INITIAL_SIZE = 8;
 
+std::ostream& operator<< (std::ostream& os, const stack_item& si) {
+	os << "(" << si.col << ":" << si.height << ")";
+	return os;
+}
+
 // créé une pile vide de taille size.
 stack createEmptyStack(const size_t& size) {
 	stack s;
@@ -31,16 +36,15 @@ void push(stack& s,const stack_item& val) {
 }
 
 // Extrait la valeur au sommet de la pile. Renvoie une range_error si la pile est vide.
-stack_item pop(stack& s) {
+void pop(stack& s, stack_item& si) {
 	if(empty(s)) {
 		throw new range_error("impossible de pop depuis une stack vide");
 	}
-	stack_item val = s.data[s.top--];
+	si = s.data[--s.top];
 	//on resize la pile si le nombre d'éléments est inférieur au tiers de la capacité.
-	if(s.top <= (s.size / 3)) {
+	if(s.top < (s.size / 3)) {
 		resize(s, s.size / 2);
 	}
-	return val;
 }
 
 // Redimensionne le tableau de valeurs de la pile s à la taille newSize.

@@ -27,13 +27,26 @@ int main(int argc, char* argv[]) {
 		goto fin;
 	}
 	TOPANDSIZE(s.top, s.size)
-
+	{
+		stack_item val = {.col=1, .height=1};
+		cout << "val:" << val << endl;
+		val.col = 1;
+		val.height = 1;
+		cout << "val:" << val << endl;
+		push(s, val);
+		TOPANDSIZE(s.top, s.size)
+		stack_item si = val;
+		cout << "val:" << si << endl;
+		pop(s, si);
+		cout << "val:" << si << endl; 
+		TOPANDSIZE(s.top, s.size)
+	}
 	cout << "fin init ===================" << endl;
 	cout << "debut push =================" << endl;
 	cout << "insertion de " << STACK_INITIAL_SIZE << " valeurs" << endl;
 	//test push
 	for(unsigned int i = 0; i < STACK_INITIAL_SIZE; i++) {
-		rect val = {.width=((i%2) == 0), .height=((i%2) == 0)};
+		stack_item val = {.col=((i%2) == 0), .height=((i%2) == 0)};
 		cout << " " << val;
 		push(s, val);
 	}
@@ -41,21 +54,23 @@ int main(int argc, char* argv[]) {
 	TOPANDSIZE(s.top, s.size)
 	//test resize en plus grand
 	{
-		rect rectangle = {.width=1, .height=1};
-		push(s, rectangle);
+		stack_item val = {.col=1, .height=1};
+		cout << val << endl;
+		push(s, val);
 	}
 	TOPANDSIZE(s.top, s.size)
-	if(!s.size > STACK_INITIAL_SIZE) {
+	if(!(s.size > STACK_INITIAL_SIZE)) {
 		cout << "Resize (+) ne marche pas";
 		goto fin;
 	}
 	cout << "fin push ===================" << endl;
 	cout << "début pop ==================" << endl;
+	TOPANDSIZE(s.top, s.size)
 	// test pop et resize en plus petit
 	for(unsigned int i = 0; i < STACK_INITIAL_SIZE; i++) {	
 		try {
-			rect val;
-			val = pop(s); 
+			stack_item val;
+			pop(s, val); 
 			cout << " " << val;
 		} catch(range_error& e) {
 			cout << e.what() << endl;
@@ -66,16 +81,17 @@ int main(int argc, char* argv[]) {
 	TOPANDSIZE(s.top, s.size)
 	cout << "pop jusqu'à stack vide: " << endl;
 	//on test le catch d'exception
-	for(int i = s.top; i <= 0; i--) {
+	for(int i = s.top; i >= 0; i--) {
 		try {
-			rect val;
-			val = pop(s); 
+			stack_item val;
+			pop(s, val);
 			cout << " " << val;
-		} catch(range_error& e) {
+		} catch(exception& e) {
 			cout << e.what() << endl;
-			break;
+			goto fin;
 		}
 	}
+	TOPANDSIZE(s.top, s.size)
 	cout << "fin pop ====================" << endl;
 	cout << "fin test stack =============" << endl;
 

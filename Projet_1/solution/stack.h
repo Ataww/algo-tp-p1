@@ -1,8 +1,9 @@
 #ifndef STACK_H
 #define STACK_H
 
-#include "common.h"
+#include <iostream>
 
+#include "common.h"
 
 /**
 * Structure représentant un élément d'une stack.
@@ -12,7 +13,15 @@
 typedef struct stack_item {
 	int col;
 	int height;
+
+	stack_item& operator=(const stack_item& s) {
+		col = s.col;
+		height = s.height;
+		return *this;
+	}
 } stack_item;
+
+std::ostream& operator<< (std::ostream& os, const stack_item& si);
 
 /**
 * structure représentant une pile de rectangles.
@@ -60,7 +69,7 @@ void push(stack& s,const stack_item& val);
 * s: La pile de laquelle on extrait la valeur.
 * return: la valeur au sommet de la pile, si la pile est non vide.
 */
-stack_item pop(stack& s);
+void pop(stack& s, stack_item& si);
 
 /**
 * Redimensionne le tableau de valeurs de la pile s à la taille newSize.
