@@ -23,7 +23,7 @@ int main (int argc, char* argv[]){
 
 	//Création de la dalle
 	try{
-		dalle.data = createDalle( dalle.dim.width, dalle.dim.heigth, argv[1]);
+		dalle.data = createDalle( dalle.dim.width, dalle.dim.height, argv[1]);
 	}
 	catch(range_error& e){
 		cout << e.what() << endl;
@@ -31,14 +31,14 @@ int main (int argc, char* argv[]){
 	}
 
 	//Formule d'accés à i ligne et j colonne
-	// i * heigth + j
+	// i * height + j
 	//Affichage des informations de la dalle
 	//et du contenu de la dalle
-	cout << "largeur= " << dalle.dim.width << " / " << "hauteur= " << dalle.dim.heigth << endl;
+	cout << "largeur= " << dalle.dim.width << " / " << "hauteur= " << dalle.dim.height << endl;
 
 	//Variable liée au plus grand rectangle
 	point coord = {.x = 0, .y = 0};
-	rect rect = {.width = 0, .heigth = 0};
+	rect rect = {.width = 0, .height = 0};
 
 	if(solution3(dalle, rect, coord)) {
 		//Affichage
@@ -47,7 +47,7 @@ int main (int argc, char* argv[]){
 		cout << "- coordonnée x: " << coord.x << endl;
 		cout << "- coordonnée y: " << coord.y << endl;
 		cout << "- largeur : "     << rect.width << endl;
-		cout << "- hauteur : "     << rect.heigth << endl;
+		cout << "- hauteur : "     << rect.height << endl;
 	} else  {
 		cout << "dallage noir. Pas de rectangle blanc possible." << endl;
 	}

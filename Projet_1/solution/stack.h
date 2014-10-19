@@ -3,14 +3,17 @@
 
 #include "common.h"
 
+// rend le changement de type contenu par la stack plus facile.
+#define STACK_ITEM_TYPE stack_item
+
 /**
 * Structure représentant un élément d'une stack.
 * rect: les dimensions du rectangle.
 * coord: les coordonnées du point inférieur gauche du rectangle.
 */
 typedef struct stack_item {
-	int col;
-	int heigth;
+	rect rect;
+	point coord;
 } stack_item;
 
 /**
@@ -22,7 +25,7 @@ typedef struct stack_item {
 typedef struct stack {
 	unsigned int top;
 	size_t size;
-	stack_item* data;
+	STACK_ITEM_TYPE* data;
 }stack;
 
 /**
@@ -52,14 +55,14 @@ bool empty(const stack& s);
 * s: La pile dans laquelle insérer la valeur.
 * val: la valeur à insérer.
 */
-void push(stack& s,const stack_item& val);
+void push(stack& s,const STACK_ITEM_TYPE& val);
 
 /**
 * Extrait la valeur au sommet de la pile. Renvoie une range_error si la pile est vide.
 * s: La pile de laquelle on extrait la valeur.
 * return: la valeur au sommet de la pile, si la pile est non vide.
 */
-stack_item pop(stack& s);
+STACK_ITEM_TYPE pop(stack& s);
 
 /**
 * Redimensionne le tableau de valeurs de la pile s à la taille newSize.

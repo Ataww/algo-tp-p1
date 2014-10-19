@@ -73,8 +73,8 @@ solution_3: read.o common.o solution_3.o main_solution_3.o
 	mv solution_3.exe $(EXE_DIR)
 
 #Cible pour la solution 4
-solution_4: read.o common.o stack.o solution_4.o main_solution_4.o
-	$(CX) $(CFLAGS) -o solution_4.exe read.o common.o stack.o solution_4.o main_solution_4.o
+solution_4: read.o common.o stack.o solution_4.o
+	$(CX) $(CFLAGS) -o solution_4.exe read.o common.o stack.o solution_4.o
 	mv solution_4.exe $(EXE_DIR)
 
 #Cible pour le générateur de test
@@ -117,9 +117,6 @@ main_solution_1.o: $(SOLUTION_DIR)main_solution_1.cpp $(SOLUTION_DIR)solution_1.
 
 main_solution_3.o: $(SOLUTION_DIR)main_solution_3.cpp $(SOLUTION_DIR)solution_3.h $(SOLUTION_DIR)common.h $(READ_DIR)read.h
 	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)main_solution_3.cpp
-
-main_solution_4.o: $(SOLUTION_DIR)main_solution_4.cpp $(SOLUTION_DIR)solution_4.h $(SOLUTION_DIR)common.h $(READ_DIR)read.h
-	$(CX) $(CFLAGS) -c $(SOLUTION_DIR)main_solution_4.cpp
 
 #Cible de nettoyage
 clean:

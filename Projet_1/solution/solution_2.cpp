@@ -19,15 +19,15 @@ int measureLine(const dalle& dalle, int x, int y) {
 
 // Recherche le plus grand rectangle de dalles blanches depuis la postion donnée.
 void rectTraverse(const dalle& dalle, rect& max, const point& start, point& coord) {
-	rect current = { .width=dalle.dim.width, .heigth=0};
+	rect current = { .width=dalle.dim.width, .height=0};
 
-	for(int j = start.y; j < dalle.dim.heigth; j++) {
+	for(int j = start.y; j < dalle.dim.height; j++) {
 		//on évalue chaque ligne jusqu'à ce que la premièe case soit noire.
 		if(!dalle.data[j*dalle.dim.width+start.x]) { break;}
 
 		int ligne = measureLine(dalle, start.x, j);
 		current.width = (ligne < current.width) ? ligne : current.width;
-		current.heigth++;
+		current.height++;
 		//si le rectangle calculé est plus grand que le plus grand actuel on le remplace.
 		if(current > max) {
 			max = current;
@@ -40,7 +40,7 @@ void rectTraverse(const dalle& dalle, rect& max, const point& start, point& coor
 // Enumère tout les coins supérieurs gauche possibles pour un rectangle blanc puis recherche le plus grand rectangle.
 void searchRect(const dalle& dalle, rect& max, point& coord) {
 	for(int i = 0; i < dalle.dim.width; i++) {
-		for(int j = 0; j < dalle.dim.heigth; j++) {
+		for(int j = 0; j < dalle.dim.height; j++) {
 			if(dalle.data[j*dalle.dim.width+i]) {
 				point start = {.x=i, .y=j};
 				rectTraverse(dalle, max, start, coord);

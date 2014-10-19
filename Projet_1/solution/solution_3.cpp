@@ -62,7 +62,7 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 
 	int w = dalle.dim.width;
 	int hMin;
-	rect currentR = {.width = 0, .heigth = 0};
+	rect currentR = {.width = 0, .height = 0};
 
 	for(int x_begin = 0; x_begin < w; x_begin++){
 		hMin = tab[indice*w+x_begin];
@@ -70,7 +70,7 @@ void searchMaxRectLine(const int tab[], const int indice, rect& rectMax, point& 
 			if(tab[indice*w+x_end] < hMin)
 				hMin = tab[indice*w+x_end];
 			currentR.width = x_end - x_begin + 1;
-			currentR.heigth = hMin;
+			currentR.height = hMin;
 			if(rectMax < currentR){
 				rectMax = currentR;
 				coordMax.x = x_begin;
@@ -88,7 +88,7 @@ bool solution3(const dalle& dalle, rect& max, point& coord) {
 	checkDalle(dalle, whiteFound, blackFound, false);
 
 	//Tableau des hauteurs
-	int tabH[dalle.dim.width*dalle.dim.heigth];
+	int tabH[dalle.dim.width*dalle.dim.height];
 		
 	if(blackFound && !whiteFound) {
 		return false;
@@ -96,7 +96,7 @@ bool solution3(const dalle& dalle, rect& max, point& coord) {
 		max = dalle.dim;
 		return true;
 	} else {
-		for(int i = 0; i < dalle.dim.heigth; i++){
+		for(int i = 0; i < dalle.dim.height; i++){
 			fillTabH(dalle, tabH, i, false);
 			searchMaxRectLine(tabH,i, max, coord, dalle);
 		}

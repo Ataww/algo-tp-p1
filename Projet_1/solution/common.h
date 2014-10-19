@@ -6,16 +6,16 @@
 /**
 * Structure représentant les dimensions d'un rectangle.
 * width : la largeur du rectangle.
-* heigth : la hauteur du rectangle.
+* height : la hauteur du rectangle.
 */
 typedef struct rect {
 	int width;
-	int heigth;
+	int height;
 
 	//assignement
 	rect& operator=(const rect& n) {
 		width = n.width;
-		heigth = n.heigth;
+		height = n.height;
 		return *this;
 	}
 } rect;
@@ -31,7 +31,7 @@ bool operator<= (const rect& l, const rect& r);
 
 bool operator>= (const rect& l, const rect& r);
 
-//affiche un rectangle sous la forme (width,heigth)
+//affiche un rectangle sous la forme (width,height)
 std::ostream& operator<< (std::ostream& os, const rect& r);
 
 /**
