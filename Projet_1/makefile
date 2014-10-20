@@ -4,7 +4,7 @@ READ_DIR = read/
 SOLUTION_DIR = solution/
 TEST_DIR = test/
 EXE_DIR = exe/
-EXEC = solution_1 solution_2 solution_3 test_read test_generator test_solution_1 test_solution_2 test_solution_3 test_performance
+EXEC = solution_1 solution_2 solution_3 solution_4 test_read test_generator test_solution_1 test_solution_2 test_solution_3 test_solution_4 test_performance
 
 #Cible pour une compilation total du projet
 all: $(EXEC)
@@ -57,12 +57,20 @@ test_solution_3: solution_3.o test_solution_3.o  common.o read.o
 test_solution_3.o: $(TEST_DIR)test_solution_3.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_3.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_solution_3.cpp
 
+#cible TEST pour la solution 4
+test_solution_4: solution_4.o solution_3.o stack.o test_solution_4.o  common.o read.o
+	$(CX) $(CFLAGS) -o test_solution_4.exe test_solution_4.o solution_4.o solution_3.o stack.o read.o common.o
+	mv test_solution_4.exe $(EXE_DIR)
+
+test_solution_4.o: $(TEST_DIR)test_solution_4.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_4.h
+	$(CX) $(CFLAGS) -c $(TEST_DIR)test_solution_4.cpp
+
 #cible TEST pour le test de performance
-test_performance: generator read.o common.o test_performance.o solution_1.o solution_2.o solution_3.o 
-	$(CX) $(CFLAGS) -o test_performance.exe test_performance.o solution_1.o solution_2.o solution_3.o read.o common.o
+test_performance: generator read.o common.o test_performance.o solution_1.o solution_2.o solution_3.o solution_4.o stack.o
+	$(CX) $(CFLAGS) -o test_performance.exe test_performance.o solution_1.o solution_2.o solution_3.o solution_4.o stack.o read.o common.o
 	mv test_performance.exe $(EXE_DIR)
 
-test_performance.o: $(TEST_DIR)test_performance.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_1.h $(SOLUTION_DIR)solution_2.h $(SOLUTION_DIR)solution_3.h
+test_performance.o: $(TEST_DIR)test_performance.cpp $(READ_DIR)read.h $(SOLUTION_DIR)common.h $(SOLUTION_DIR)solution_1.h $(SOLUTION_DIR)solution_2.h $(SOLUTION_DIR)solution_3.h $(SOLUTION_DIR)solution_4.h
 	$(CX) $(CFLAGS) -c $(TEST_DIR)test_performance.cpp
 
 #Cible pour la solution 1
