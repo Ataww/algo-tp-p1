@@ -3,6 +3,7 @@
 
 #include "../read/read.h"
 #include "common.h"
+#include "solution_3.h"
 
 using namespace std;
 

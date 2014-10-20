@@ -33,7 +33,7 @@ void closeRects(stack& s, const int& height, const int& col, const int& line, re
 	while(!empty(s)) {
 		try {
 			pop(s, si);
-			if(si.height <= height) { break;}
+			if(si.height < height) { break;}
 			calcRect(max, coord, si, col, line);
 		} catch(range_error& e) {
 			cout << e.what() << endl;
@@ -46,7 +46,6 @@ void closeRects(stack& s, const int& height, const int& col, const int& line, re
 		si.height = height;
 		push(s, si);
 	}
-	
 }
 
 // Parcourt la ligne line sur le tableau des hauteurs pour rechercher le rectangle maximal.
