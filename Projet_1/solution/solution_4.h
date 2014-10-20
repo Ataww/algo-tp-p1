@@ -51,7 +51,7 @@ void closeRects(stack& s, const int& height, const int& col, const int& line, re
 void lineTraverse(const rect& dim, stack& s, rect& max, point& coord, const int tabHeight[], int line);
 
 /**
-* Point d'entrée pour la solution 2. Analyse la dalle pour quelques cas particuliers.
+* Point d'entrée pour la solution 2.
 * dalle: le dallage dans lequel on cherche le rectangle.
 * max: référence du plus grand rectangle. 
 *	Le rectangle donnée doit être de dimension (0,0) et le rectangle maximal est retourné.

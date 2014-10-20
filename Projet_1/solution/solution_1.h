@@ -1,7 +1,7 @@
 #ifndef SOLUTION_1_H
 #define SOLUTION_1_H
 
-#define S1_DISPLAY false
+#define S1_DISPLAY true
 
 /**
 *Test si un retangle ne contient pas de case noir     

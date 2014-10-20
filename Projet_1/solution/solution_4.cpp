@@ -29,12 +29,17 @@ void calcRect(rect& max, point& coord, const stack_item& si, const int& col, con
 
 // Ferme les rectangles contenus dans la pile s d'un hauteur supérieure à height.
 void closeRects(stack& s, const int& height, const int& col, const int& line, rect& max, point& coord) {
-	stack_item si = {.col=0, .height=0};
+	stack_item si, prev;
 	while(!empty(s)) {
 		try {
 			pop(s, si);
-			if(si.height < height) { break;}
+			if(si.height < height) {
+				push(s, si);
+				si = prev;
+				break;
+			}
 			calcRect(max, coord, si, col, line);
+			prev = si;
 		} catch(range_error& e) {
 			cout << e.what() << endl;
 			break;
@@ -61,18 +66,18 @@ void lineTraverse(const rect& dim, stack& s, rect& max, point& coord, const int 
 		if(tabHeight[w+i] > prev) {
 			//si la hauteur est plus grande que la précédente on ouvre un rectangle
 			openRect(s,i, tabHeight[w+i]);
-		} else if(tabHeight[w+i] < prev || i == dim.width-1) {
+		} else if(tabHeight[w+i] < prev ) {
 			// si la hauteur de la colonne est moins grande que la précédente ou dernière colonne
 			closeRects(s, tabHeight[w+i], i, line, max, coord);
 		}
 		prev = tabHeight[w+i];
 	}
 	while(!empty(s)) {
-		stack_item si; //on vide la stack complètement.
-		pop(s, si);
+		closeRects(s, 0, dim.width-1, line, max, coord);
 	}
 }
 
+// Point d'entrée pour la solution 2
 bool solution4(const dalle& dalle, rect& max, point& coord) {
  	bool whiteFound = false;
  	bool blackFound = false;
