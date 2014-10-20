@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+#define S3_DISPLAY false
+
 /**
 *	Fonction remplissant la ligne du tableau de hauteurs    
 *	dont l'indice est passé en paramètre.					

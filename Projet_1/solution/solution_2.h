@@ -3,6 +3,8 @@
 
 #include "common.h"
 
+#define S2_DISPLAY false
+
 /**
 * Compte le nombre de cases blanches sur une ligne donnée, depuis une position donnée.
 * s'arrête en fin de ligne ou dés que la dalle est noire.
