@@ -92,7 +92,7 @@ int main(int argc, char* argv[]){
 		chrono::duration<double, micro> elapsed3 = end3-start3;
 		chrono::duration<double, micro> elapsed4 = end4-start4;
 
-		if(rect_1 == rect_2 && rect_1 == rect_3  && rect_1 == rect_4 && coord_1 == coord_2 && coord_1 == coord_3){
+		if(rect_1 == rect_2 && rect_1 == rect_3  && rect_1 == rect_4){
 			//Ecriture
 			if(result1)
 				f1 << elapsed1.count() << '\n';
