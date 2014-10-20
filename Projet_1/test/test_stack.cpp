@@ -81,13 +81,13 @@ int main(int argc, char* argv[]) {
 	TOPANDSIZE(s.top, s.size)
 	cout << "pop jusqu'à stack vide: " << endl;
 	//on test le catch d'exception
-	for(int i = s.top; i >= 0; i--) {
+	for(int i = s.top; i > 0; i--) {
 		try {
 			stack_item val;
 			pop(s, val);
 			cout << " " << val;
 		} catch(exception& e) {
-			cout << e.what() << endl;
+			cout << e.what() << endl; //marche pas
 			goto fin;
 		}
 	}
