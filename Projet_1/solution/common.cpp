@@ -37,6 +37,10 @@ ostream& operator<< (ostream& os, const rect& r) {
 //                                     Point                                            //
 //////////////////////////////////////////////////////////////////////////////////////////
 
+bool operator== (const point& l, const point& r) {
+	return (l.x == r.x && l.y == l.y);
+}
+
 // point output
 ostream& operator<< (ostream& os, const point& p) {
 	os << "(" << p.x << "," << p.y << ")";

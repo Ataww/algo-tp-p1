@@ -51,6 +51,8 @@ typedef struct point {
 	}
 } point;
 
+bool operator== (const point& l, const point& r);
+
 //affiche un point sous la forme (x,y)
 std::ostream& operator<< (std::ostream& os, const point& p);
 
