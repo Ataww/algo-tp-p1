@@ -1,9 +1,11 @@
 #include <iostream>
 #include <string>
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
+#include <cstring>
+#include <cstdio>
+#include <cstdlib>
+#include <cctype>
 #include <fstream>
+#include <ctime>
 using namespace std;
 
 const string ERROR_APPEL= "ERREUR sur le nombres de paramètres d'appel.";
