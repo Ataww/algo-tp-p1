@@ -103,8 +103,10 @@ int main(int argc, char* argv[]){
 			if(result4)
 				f4 << elapsed4.count() << '\n';
 		}
-		else
+		else{
 			cout << "ERREUR RESULTAT" << endl;
+			return -1;
+		}
 	}
 
 	f1.close();
