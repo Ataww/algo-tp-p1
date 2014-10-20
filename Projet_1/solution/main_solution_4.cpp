@@ -6,6 +6,9 @@
 
 using namespace std;
 
+/**
+* Point d'entrée du programme pour la solution 4.
+*/
 int main(int argc, char* argv[]) {
 
 		//on vérifie qu'un fichier est donné en entrée.

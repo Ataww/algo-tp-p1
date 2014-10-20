@@ -41,6 +41,7 @@ void closeRects(stack& s, const int& height, const int& col, const int& line, re
 		}
 	}
 	// on réduit le dernier rectangle dépilé et on le replace dans la pile.
+	// sauf si la hauteur est de 0, dans ce cas on ferme tous les rectangle.
 	if(height > 0) {
 		si.height = height;
 		push(s, si);

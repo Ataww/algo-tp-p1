@@ -38,7 +38,7 @@ void push(stack& s,const stack_item& val) {
 // Extrait la valeur au sommet de la pile. Renvoie une range_error si la pile est vide.
 void pop(stack& s, stack_item& si) {
 	if(empty(s)) {
-		throw new range_error("impossible de pop depuis une stack vide");
+		throw range_error("impossible de pop depuis une stack vide");
 	}
 	si = s.data[--s.top];
 	//on resize la pile si le nombre d'éléments est inférieur au tiers de la capacité.
