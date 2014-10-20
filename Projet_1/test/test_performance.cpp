@@ -10,6 +10,7 @@ using namespace std;
 #include "../solution/solution_1.h"
 #include "../solution/solution_2.h"
 #include "../solution/solution_3.h"
+//#include "../solution/solution_4.h"
 
 const int NB_LOOP = 100;
 const string TEST = "test_generator.txt";
@@ -33,6 +34,7 @@ int main(int argc, char* argv[]){
 	f1.open(PERFORM_1);
 	f2.open(PERFORM_2);
 	f3.open(PERFORM_3);
+	//f4.open(PERFORM_4);
 
 	for(int i = 0; i < NB_LOOP; i++){
 
@@ -45,7 +47,7 @@ int main(int argc, char* argv[]){
 		rect rect = {.width = 0, .height = 0};
 
 		//Variable de chronomètre
-		chrono::time_point<std::chrono::system_clock> start1, start2, start3, end1, end2, end3;
+		chrono::time_point<std::chrono::system_clock> start1, start2, start3, start4, end1, end2, end3, end4;
 
 		//Création du fichier test
 		string command = "./exe/generator.exe " + to_string(100) + " " + to_string(pourcentage); 
@@ -73,11 +75,16 @@ int main(int argc, char* argv[]){
 		start3 = chrono::system_clock::now();
 		bool result3 = solution3(dalle, rect, coord);
 		end3 = chrono::system_clock::now();
-
+		/*
+		start4 = chrono::system_clock::now();
+		bool result4 = solution4(dalle, rect, coord);
+		end4 = chrono::system_clock::now();
+		*/
 		//Calcul du temps d'excution
 		chrono::duration<double, micro> elapsed1 = end1-start1;
 		chrono::duration<double, micro> elapsed2 = end2-start2;
 		chrono::duration<double, micro> elapsed3 = end3-start3;
+		//chrono::duration<double, micro> elapsed4 = end4-start4;
 
 		//Ecriture
 		if(result1)
@@ -86,11 +93,14 @@ int main(int argc, char* argv[]){
 			f2 << elapsed2.count() << '\n';
 		if(result3)
 			f3 << elapsed3.count() << '\n';
+		//if(result4)
+		//	f4 << elapsed4.count() << '\n';
 	}
 
 	f1.close();
 	f2.close();
 	f3.close();
+	//f4.close();
 
 	return 0;
 }
