@@ -14,7 +14,6 @@ using namespace std;
 #include "../solution/solution_4.h"
 
 const int NB_LOOP = 100;
-const int PBLANC = 75;
 const string TEST = "test_generator.txt";
 const string PERFORM_1 = "performance_1.txt";
 const string PERFORM_2 = "performance_2.txt";
@@ -30,6 +29,7 @@ int main(int argc, char* argv[]){
 
 	srand(time(NULL));
 	int taille = 100;
+	int pourcentage = 1;
 
 	//Fichier d'écriture
 	ofstream f1, f2, f3, f4;
@@ -60,12 +60,13 @@ int main(int argc, char* argv[]){
 		//Création du fichier test
 		ostringstream command;
 #ifdef _WIN32
-		command << ".\\exe\\generator.exe " << taille << " " << PBLANC;
+		command << ".\\exe\\generator.exe " << taille << " " << pourcentage;
 #else
-		command << "./exe/generator.exe " << taille << " " << PBLANC;
+		command << "./exe/generator.exe " << taille << " " << pourcentage;
 #endif
 		system(command.str().c_str());
 		taille++;
+		pourcentage++;
 
 		//Création de la dalle
 		try{
@@ -99,7 +100,7 @@ int main(int argc, char* argv[]){
 		chrono::duration<double, micro> elapsed3 = end3-start3;
 		chrono::duration<double, micro> elapsed4 = end4-start4;
 
-		if(rect_1 == rect_2 && rect_1 == rect_3  && /*rect_1 == rect_4*/){ //Solution 4 a des problème dans certains cas que nous
+		if(rect_1 == rect_2 && rect_1 == rect_3  /*&& rect_1 == rect_4*/){ //Solution 4 a des problème dans certains cas que nous
 			//Ecriture													   // n'arrivosn pas à déterminer.
 			if(result1)
 				f1 << elapsed1.count() << '\n';
