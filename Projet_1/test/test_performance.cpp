@@ -58,7 +58,11 @@ int main(int argc, char* argv[]){
 
 		//Création du fichier test
 		ostringstream command;
+#ifdef _WIN32
 		command << ".\\exe\\generator.exe " << 100 << " " << pourcentage;
+#else
+		command << "./exe/generator.exe " << 100 << " " << pourcentage;
+#endif
 		system(command.str().c_str());
 		pourcentage++;
 
