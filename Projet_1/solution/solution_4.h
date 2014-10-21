@@ -31,6 +31,7 @@ void calcRect(rect& max, point& coord, const stack_item& si, const int& col, con
 /**
 * Ferme les rectangles contenus dans la pile s d'un hauteur supérieure à height.
 * Le dernier rectangle fermé est réduit à la hauteur height et replacé dans la pile.
+* Si height est égal à 0, alors tous les rectangles ouverts sont fermés.
 * s: La pile depuis laquelle on récupère les rectangles fermés.
 * height: La hauteur de la colonne actuelle.
 * col: L'indice de la colonne actuelle.

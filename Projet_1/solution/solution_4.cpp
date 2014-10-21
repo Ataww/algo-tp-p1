@@ -72,6 +72,8 @@ void lineTraverse(const rect& dim, stack& s, rect& max, point& coord, const int 
 		}
 		prev = tabHeight[w+i];
 	}
+
+	//on est en fin de ligne, on ferme tous les rectangles encore ouverts.
 	while(!empty(s)) {
 		closeRects(s, 0, dim.width-1, line, max, coord);
 	}

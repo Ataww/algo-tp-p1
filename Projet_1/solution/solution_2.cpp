@@ -66,4 +66,3 @@ bool solution2(const dalle& dalle, rect& max, point& coord) {
 		return true;
 	}
 }
-
