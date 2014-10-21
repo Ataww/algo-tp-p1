@@ -1,6 +1,7 @@
 #include <iostream>
-#include <string>
-#include <stdlib.h> 
+#include <stdexcept>
+#include <sstream>
+#include <cstdlib> 
 #include <fstream>
 #include <chrono>
 #include <ctime>
@@ -56,8 +57,9 @@ int main(int argc, char* argv[]){
 		chrono::time_point<std::chrono::system_clock> start1, start2, start3, start4, end1, end2, end3, end4;
 
 		//Création du fichier test
-		string command = "./exe/generator.exe " + to_string(100) + " " + to_string(pourcentage); 
-		system(command.c_str());
+		ostringstream command;
+		command << ".\\exe\\generator.exe " << 100 << " " << pourcentage;
+		system(command.str().c_str());
 		pourcentage++;
 
 		//Création de la dalle
@@ -105,6 +107,11 @@ int main(int argc, char* argv[]){
 		}
 		else{
 			cout << "ERREUR RESULTAT" << endl;
+			cout << "dalle: " << dalle.dim << endl;
+			cout << "rect1: " << rect_1 << endl;
+			cout << "rect2: " << rect_2 << endl;
+			cout << "rect3: " << rect_3 << endl;
+			cout << "rect4: " << rect_4 << endl;
 			return -1;
 		}
 	}

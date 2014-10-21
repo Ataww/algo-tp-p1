@@ -1,5 +1,5 @@
 CX = g++
-CFLAGS = -Wall
+CFLAGS = -Wall -std=c++11
 READ_DIR = read/
 SOLUTION_DIR = solution/
 TEST_DIR = test/
